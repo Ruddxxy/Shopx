@@ -33,6 +33,11 @@ class BottomNavBar extends StatelessWidget {
           label: 'Categories',
         ),
         BottomNavigationBarItem(
+          icon: Icon(Icons.chat_outlined),
+          activeIcon: Icon(Icons.chat),
+          label: 'Chat',
+        ),
+        BottomNavigationBarItem(
           icon: Icon(Icons.receipt_long_outlined),
           activeIcon: Icon(Icons.receipt_long),
           label: 'Orders',

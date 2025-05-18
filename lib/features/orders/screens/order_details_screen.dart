@@ -57,7 +57,7 @@ class OrderDetailsScreen extends StatelessWidget {
                             vertical: 6,
                           ),
                           decoration: BoxDecoration(
-                            color: _getStatusColor(order.status).withOpacity(0.1),
+                            color: _getStatusColor(order.status).withAlpha(26),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Text(
@@ -120,7 +120,7 @@ class OrderDetailsScreen extends StatelessWidget {
                                   width: 60,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: ShopXTheme.textDark.withOpacity(0.1),
+                                    color: ShopXTheme.textDark.withAlpha(26),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: Icon(
@@ -136,7 +136,7 @@ class OrderDetailsScreen extends StatelessWidget {
                             width: 60,
                             height: 60,
                             decoration: BoxDecoration(
-                              color: ShopXTheme.textDark.withOpacity(0.1),
+                              color: ShopXTheme.textDark.withAlpha(26),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Icon(

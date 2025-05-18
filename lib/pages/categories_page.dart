@@ -77,10 +77,13 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
       case 1: // Categories
         // Already on categories
         break;
-      case 2: // Orders
+      case 2: // Chat
+        Navigator.pushNamed(context, '/chat');
+        break;
+      case 3: // Orders
         Navigator.pushReplacementNamed(context, '/orders');
         break;
-      case 3: // Account
+      case 4: // Account
         Navigator.pushReplacementNamed(context, '/account');
         break;
     }
@@ -242,7 +245,7 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.08),
+                          color: Colors.black.withAlpha(26),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
                         ),
@@ -370,7 +373,7 @@ class CategoryProductsPage extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.08),
+                      color: Colors.black.withAlpha(26),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),
@@ -446,6 +449,7 @@ class CategoryProductsPage extends ConsumerWidget {
                             child: ElevatedButton(
                               onPressed: () async {
                                 await ref.read(cartProvider.notifier).addToCart(product);
+                                if (!context.mounted) return;
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: const Text('Added to cart'),

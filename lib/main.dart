@@ -1,28 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:project_x/core/config.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+// Screens
 import 'screens/splash_screen.dart';
 import 'features/auth/screens/login_screen.dart';
 import 'features/products/screens/home_screen.dart';
 import 'features/orders/screens/order_history_screen.dart';
 import 'features/cart/screens/cart_screen.dart';
+import 'features/products/screens/product_screen.dart';
+import 'features/chat/screens/chat_screen.dart';
 import 'pages/account_page.dart';
 import 'pages/saved_addresses_page.dart';
 import 'pages/categories_page.dart';
-import 'theme/shopx_theme.dart';
-import 'features/products/screens/product_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'core/services/auth_service.dart';
 import 'pages/settings_page.dart';
+
+// Theme & Providers
+import 'theme/shopx_theme.dart';
+import 'core/providers/theme_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  // Initialize Supabase
+  await dotenv.load(fileName: '.env');
+
+  // Initialize Supabase using environment variables
   await Supabase.initialize(
-    url: Config.supabaseUrl,
-    anonKey: Config.supabaseAnonKey,
+    url: dotenv.env['SUPABASE_URL'] ?? '',
+    anonKey: dotenv.env['SUPABASE_ANON_KEY'] ?? '',
   );
 
   // Initialize SharedPreferences
@@ -58,6 +64,7 @@ class MyApp extends ConsumerWidget {
         '/addresses': (context) => const SavedAddressesPage(),
         '/categories': (context) => const CategoriesPage(),
         '/settings': (context) => const SettingsPage(),
+        '/chat': (context) => const ChatScreen(),
         '/product': (context) {
           final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
           return ProductDetailScreen(product: args);

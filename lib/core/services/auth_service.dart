@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
+import '../providers/theme_provider.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -94,8 +95,4 @@ final authServiceProvider = Provider<AuthService>((ref) {
   final prefs = ref.watch(sharedPreferencesProvider);
   final supabase = Supabase.instance.client;
   return AuthService(prefs, supabase);
-});
-
-final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
-  throw UnimplementedError('Initialize SharedPreferences first');
 }); 

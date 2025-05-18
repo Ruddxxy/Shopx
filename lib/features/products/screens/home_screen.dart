@@ -220,9 +220,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               Navigator.pushNamed(context, '/categories');
               break;
             case 2:
-              Navigator.pushNamed(context, '/orders');
+              Navigator.pushNamed(context, '/chat');
               break;
             case 3:
+              Navigator.pushNamed(context, '/orders');
+              break;
+            case 4:
               Navigator.pushNamed(context, '/account');
               break;
           }

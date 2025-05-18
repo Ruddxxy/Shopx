@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../theme/shopx_theme.dart';
-
-final darkModeProvider = StateProvider<bool>((ref) => true);
+import '../core/providers/theme_provider.dart';
+import '../core/providers/notifications_provider.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});
@@ -10,6 +10,7 @@ class SettingsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isDarkMode = ref.watch(darkModeProvider);
+
     return Scaffold(
       backgroundColor: ShopXTheme.primaryBackground,
       appBar: AppBar(
@@ -23,68 +24,45 @@ class SettingsPage extends ConsumerWidget {
         padding: const EdgeInsets.all(16),
         children: [
           _SettingsSection(
+            title: 'Appearance',
+            items: [
+              _SettingsItem(
+                icon: Icons.dark_mode,
+                title: 'Dark Mode',
+                trailing: Switch(
+                  value: isDarkMode,
+                  onChanged: (value) {
+                    ref.read(darkModeProvider.notifier).toggleDarkMode();
+                  },
+                  activeColor: ShopXTheme.accentGold,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),
+          _SettingsSection(
             title: 'Notifications',
             items: [
               _SettingsItem(
                 icon: Icons.notifications_outlined,
                 title: 'Push Notifications',
                 trailing: Switch(
-                  value: true,
-                  onChanged: (value) {},
-                  activeColor: Colors.indigo[400],
+                  value: ref.watch(pushNotificationsProvider),
+                  onChanged: (value) {
+                    ref.read(pushNotificationsProvider.notifier).togglePushNotifications();
+                  },
+                  activeColor: ShopXTheme.accentGold,
                 ),
               ),
               _SettingsItem(
                 icon: Icons.email_outlined,
                 title: 'Email Notifications',
                 trailing: Switch(
-                  value: false,
-                  onChanged: (value) {},
-                  activeColor: Colors.indigo[400],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 24),
-          _SettingsSection(
-            title: 'Appearance',
-            items: [
-              _SettingsItem(
-                icon: Icons.dark_mode_outlined,
-                title: 'Dark Mode',
-                trailing: Switch(
-                  value: isDarkMode,
+                  value: true,
                   onChanged: (value) {
-                    ref.read(darkModeProvider.notifier).state = value;
-                    // Optionally, persist the theme preference here
+                    // TODO: Implement email notifications toggle
                   },
                   activeColor: ShopXTheme.accentGold,
-                ),
-              ),
-              _SettingsItem(
-                icon: Icons.language_outlined,
-                title: 'Language',
-                trailing: const Text('English', style: TextStyle(color: Colors.grey)),
-                onTap: () {},
-              ),
-            ],
-          ),
-          const SizedBox(height: 24),
-          _SettingsSection(
-            title: 'Privacy & Security',
-            items: [
-              _SettingsItem(
-                icon: Icons.lock_outline,
-                title: 'Change Password',
-                onTap: () {},
-              ),
-              _SettingsItem(
-                icon: Icons.security_outlined,
-                title: 'Two-Factor Authentication',
-                trailing: Switch(
-                  value: false,
-                  onChanged: (value) {},
-                  activeColor: Colors.indigo[400],
                 ),
               ),
             ],
@@ -96,17 +74,21 @@ class SettingsPage extends ConsumerWidget {
               _SettingsItem(
                 icon: Icons.info_outline,
                 title: 'App Version',
-                trailing: const Text('1.0.0', style: TextStyle(color: Colors.grey)),
+                trailing: const Text('1.0.0'),
               ),
               _SettingsItem(
                 icon: Icons.description_outlined,
                 title: 'Terms of Service',
-                onTap: () {},
+                onTap: () {
+                  // TODO: Navigate to terms of service
+                },
               ),
               _SettingsItem(
                 icon: Icons.privacy_tip_outlined,
                 title: 'Privacy Policy',
-                onTap: () {},
+                onTap: () {
+                  // TODO: Navigate to privacy policy
+                },
               ),
             ],
           ),
@@ -137,7 +119,7 @@ class _SettingsSection extends StatelessWidget {
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: Colors.indigo[700],
+              color: ShopXTheme.accentGold,
             ),
           ),
         ),
@@ -147,7 +129,7 @@ class _SettingsSection extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withValues(alpha : 0.08),
+                color: Colors.black.withAlpha(26),
                 blurRadius: 10,
                 offset: const Offset(0, 4),
               ),
@@ -178,7 +160,7 @@ class _SettingsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(icon, color: Colors.indigo[400]),
+      leading: Icon(icon, color: ShopXTheme.accentGold),
       title: Text(title, style: const TextStyle(fontWeight: FontWeight.w500)),
       trailing: trailing ?? const Icon(Icons.arrow_forward_ios, size: 18, color: Colors.grey),
       onTap: onTap,

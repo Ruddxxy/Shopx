@@ -54,5 +54,6 @@ android/key.properties
 # Build files
 android/app/build/
 
-
+# Configuration files with sensitive data
+lib/core/config.dart
 

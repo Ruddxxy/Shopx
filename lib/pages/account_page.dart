@@ -208,7 +208,7 @@ class _AccountPageState extends ConsumerState<AccountPage> {
             onPressed: () async {
               final authController = ref.read(authControllerProvider);
               await authController.logout();
-              if (mounted) {
+              if (context.mounted) {
                 Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(builder: (_) => const signup.SignUpScreen()),
                   (route) => false,
@@ -219,9 +219,9 @@ class _AccountPageState extends ConsumerState<AccountPage> {
         ],
       ),
       bottomNavigationBar: BottomNavBar(
-        currentIndex: 3,
+        currentIndex: 4,
         onTap: (index) {
-          if (index == 3) return;
+          if (index == 4) return;
           switch (index) {
             case 0:
               Navigator.pushNamed(context, '/home');
@@ -230,9 +230,12 @@ class _AccountPageState extends ConsumerState<AccountPage> {
               Navigator.pushNamed(context, '/categories');
               break;
             case 2:
-              Navigator.pushNamed(context, '/orders');
+              Navigator.pushNamed(context, '/chat');
               break;
             case 3:
+              Navigator.pushNamed(context, '/orders');
+              break;
+            case 4:
               break;
           }
         },

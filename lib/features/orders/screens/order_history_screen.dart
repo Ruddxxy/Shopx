@@ -41,7 +41,7 @@ class OrderHistoryScreen extends ConsumerWidget {
                   Icon(
                     Icons.shopping_bag_outlined,
                     size: 64,
-                    color: ShopXTheme.textDark.withOpacity(0.5),
+                    color: ShopXTheme.textDark.withAlpha(26),
                   ),
                   const SizedBox(height: 16),
                   Text(
@@ -55,7 +55,7 @@ class OrderHistoryScreen extends ConsumerWidget {
                   Text(
                     'Your order history will appear here',
                     style: TextStyle(
-                      color: ShopXTheme.textDark.withOpacity(0.7),
+                      color: ShopXTheme.textDark.withAlpha(26),
                     ),
                   ),
                 ],
@@ -106,7 +106,7 @@ class OrderHistoryScreen extends ConsumerWidget {
                                 vertical: 6,
                               ),
                               decoration: BoxDecoration(
-                                color: _getStatusColor(order.status).withOpacity(0.1),
+                                color: _getStatusColor(order.status).withAlpha(26),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Text(
@@ -144,7 +144,7 @@ class OrderHistoryScreen extends ConsumerWidget {
                         Text(
                           'Placed on ${_formatDate(order.createdAt)}',
                           style: TextStyle(
-                            color: ShopXTheme.textDark.withOpacity(0.7),
+                            color: ShopXTheme.textDark.withAlpha(26),
                             fontSize: 12,
                           ),
                         ),
@@ -191,7 +191,7 @@ class OrderHistoryScreen extends ConsumerWidget {
         ),
       ),
       bottomNavigationBar: BottomNavBar(
-        currentIndex: 2, // Orders tab
+        currentIndex: 3, // Orders tab
         onTap: (index) {
           switch (index) {
             case 0:
@@ -201,9 +201,12 @@ class OrderHistoryScreen extends ConsumerWidget {
               Navigator.pushReplacementNamed(context, '/categories');
               break;
             case 2:
-              // Already on orders
+              Navigator.pushNamed(context, '/chat');
               break;
             case 3:
+              // Already on orders
+              break;
+            case 4:
               Navigator.pushReplacementNamed(context, '/account');
               break;
           }
