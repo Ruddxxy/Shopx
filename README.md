@@ -1,38 +1,60 @@
-# Shopx 
+# Shopx
 
-Shopx is a modern, cross-platform e-commerce app built with Flutter. It provides a seamless shopping experience with features like product browsing, cart management, order history, and user authentication. Shopx is designed for Android, iOS, Web, Windows, macOS, and Linux.
+Shopx is a modern, cross-platform e-commerce app built with Flutter. It provides a seamless shopping experience with features like product browsing, cart management, order history, user authentication, and an AI-powered shopping assistant chatbot. Shopx is designed for Android, iOS, Web, Windows, macOS, and Linux.
+
+---
 
 ## Features
-- Browse products with images and details
-- Add/remove products to/from cart
-- Checkout with shipping address
-- View order history and order details
-- User authentication (login/signup)
-- Responsive UI for mobile and desktop
-- Persistent cart and order data
+
+- **Product Browsing:** View products with images, details, and categories.
+- **Cart Management:** Add, remove, and update products in your cart.
+- **Checkout:** Place orders with shipping address management.
+- **Order History:** View past orders and order details.
+- **User Authentication:** Secure login and signup.
+- **AI Chatbot:** Get shopping assistance via an integrated AI chatbot (OpenAI).
+- **Theme Support:** Toggle between dark and light mode.
+- **Responsive UI:** Optimized for mobile and desktop.
+- **Persistent Data:** Cart and order data are saved across sessions.
+
+---
 
 ## Getting Started
 
 ### Prerequisites
+
 - [Flutter SDK](https://flutter.dev/docs/get-started/install)
 - Dart
 - An editor like VS Code or Android Studio
 
 ### Setup
+
 1. **Clone the repository:**
    ```sh
    git clone https://github.com/YOUR_USERNAME/project_x.git
    cd project_x
    ```
+
 2. **Install dependencies:**
    ```sh
    flutter pub get
    ```
+
 3. **Configure environment:**
-   - Add your API keys and environment variables to a `.env` file if required.
-   - (Optional) Set up Supabase or your backend as per `lib/core/supabase_config.dart`.
+   - Create a `.env` file in the project root:
+     ```
+     # Supabase Configuration
+     SUPABASE_URL=your_supabase_url_here
+     SUPABASE_ANON_KEY=your_supabase_anon_key_here
+
+     # OpenAI Configuration
+     OPENAI_API_KEY=your_openai_api_key_here
+     ```
+   - Do **not** commit your `.env` file. Use `.env.example` for reference.
+
+4. **(Optional) Set up Supabase or your backend as per `lib/core/supabase_config.dart`.**
 
 ### Running the App
+
 - **Android/iOS:**
   ```sh
   flutter run
@@ -46,6 +68,7 @@ Shopx is a modern, cross-platform e-commerce app built with Flutter. It provides
   flutter run -d windows  # or macos/linux
   ```
 
+---
 ## Folder Structure
 ```
 lib/
