@@ -1,0 +1,2 @@
+C:/Users/mahap/Desktop/Shopx/android/app/.cxx/Debug/2h5z384o/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/mahap/Desktop/Shopx/android/app/.cxx/Debug/2h5z384o/armeabi-v7a/CMakeFiles/rebuild_cache.dir
